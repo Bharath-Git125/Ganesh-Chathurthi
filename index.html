@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FCWA - Ganesh Chaturthi Blessings</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #FFF8DC 0%, #F4E4BC 50%, #E6D3A3 100%);
+      min-height: 100vh;
+      color: #8B0000;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 30px 0;
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(139, 0, 0, 0.1), rgba(255, 215, 0, 0.2));
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      color: #8B0000;
+      text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.5);
+    }
+
+    .main-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    /* Ganesha Image */
+    .ganesha-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ganesha-img {
+      max-width: 100%;
+      width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      animation: gentle-float 6s ease-in-out infinite;
+    }
+
+    /* Blessing Form */
+    .blessing-form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      border: 3px solid rgba(255, 215, 0, 0.5);
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+    }
+
+    .blessing-form h2 {
+      color: #8B0000;
+      margin-bottom: 20px;
+    }
+
+    .mobile-input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    .blessing-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, #8B0000, #A0522D, #8B0000);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .blessing-display {
+      margin-top: 20px;
+      padding: 15px;
+      border: 2px dashed #FFD700;
+      border-radius: 10px;
+      background: #FFF8DC;
+      min-height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #8B0000;
+      font-weight: bold;
+    }
+
+    @keyframes gentle-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      margin-top: 40px;
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(139, 0, 0, 0.1), rgba(255, 215, 0, 0.2));
+      font-weight: bold;
+    }
+
+    @media(max-width: 768px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      .ganesha-img {
+        width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>FCWA</h1>
+      <p>Friends Culture Welfare Association</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Ganesha Image -->
+      <div class="ganesha-container">
+        <img src="ganesh.png" alt="Ganesh Idol" class="ganesha-img">
+      </div>
+
+      <!-- Blessing Form -->
+      <div class="blessing-form">
+        <h2>🙏 Receive Divine Blessings 🙏</h2>
+        <form id="blessingForm">
+          <input type="tel" id="mobileNumber" class="mobile-input" placeholder="Enter 10-digit mobile number" maxlength="10">
+          <button type="submit" class="blessing-btn">✨ Get Blessing ✨</button>
+        </form>
+        <div class="blessing-display" id="blessingDisplay">
+          Your divine blessing will appear here...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    🌸 Happy Ganesh Chaturthi from FCWA 🌸
+  </div>
+
+  <script>
+    const blessings = [
+      "May Lord Ganesha remove all obstacles from your path 🙏",
+      "Like Arjuna's arrow, may your aim always find success 🎯",
+      "May you be blessed with wisdom, health, and prosperity 🌸",
+      "Like Draupadi's faith, may your devotion bring divine grace ✨",
+      "As Krishna guided Arjuna, may you find guidance in every step 🕉️"
+    ];
+
+    document.getElementById('blessingForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const mobile = document.getElementById('mobileNumber').value.trim();
+      const blessingDisplay = document.getElementById('blessingDisplay');
+      const regex = /^[6-9]\d{9}$/;
+
+      if(!regex.test(mobile)) {
+        blessingDisplay.textContent = "❌ Please enter a valid 10-digit Indian mobile number.";
+        return;
+      }
+
+      const randomBlessing = blessings[Math.floor(Math.random() * blessings.length)];
+      blessingDisplay.textContent = randomBlessing;
+    });
+  </script>
+</body>
+</html>
